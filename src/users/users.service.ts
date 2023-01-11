@@ -24,6 +24,12 @@ export class UsersService {
       where: {
         id: id,
       },
+      select: {
+        id: true,
+        name: true,
+        role: true,
+        points: true,
+      },
     });
   }
   async updateRefreshToken(id: number, token: string) {

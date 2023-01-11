@@ -20,6 +20,7 @@ export class User {
   @Column()
   email: string;
 
+  @ApiHideProperty()
   @Column()
   password: string;
 
@@ -36,9 +37,11 @@ export class User {
   })
   refreshToken?: string;
 
+  @ApiHideProperty()
   @OneToMany((type) => Book, (Book) => Book.seller)
   books: Book[];
 
+  @ApiHideProperty()
   @OneToMany((type) => Order, (Order) => Order.user)
   purchases: Order[];
 }

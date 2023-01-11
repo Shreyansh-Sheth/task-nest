@@ -16,9 +16,11 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiHideProperty()
   @ManyToOne((type) => Book, (Book) => Book.orders)
   book: Book;
 
+  @ApiHideProperty()
   @ManyToOne((type) => User, (User) => User.purchases)
   user: User;
 
