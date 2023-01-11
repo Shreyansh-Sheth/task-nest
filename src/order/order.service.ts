@@ -82,6 +82,7 @@ export class OrderService {
     try {
       const order = await queryRunner.manager.findOne(Order, {
         where: { id: orderId },
+        relations: ['book', 'user'],
       });
 
       if (order.status !== 'PENDING') {
@@ -115,7 +116,8 @@ export class OrderService {
       await queryRunner.commitTransaction();
       await queryRunner.release();
       return true;
-    } catch {
+    } catch (e) {
+      console.log(e);
       await queryRunner.rollbackTransaction();
       await queryRunner.release();
       return false;

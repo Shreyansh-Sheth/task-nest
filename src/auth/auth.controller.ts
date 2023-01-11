@@ -34,6 +34,9 @@ export class AuthController {
     return this.authService.signIn(data);
   }
 
+  @UseGuards(RefreshTokenGuard)
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
   @Get('logout')
   logout(@Req() req: Request) {
     this.authService.logout(req.user['sub']);

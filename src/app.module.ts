@@ -12,10 +12,9 @@ import { OrderModule } from './order/order.module';
     TypeOrmModule.forRoot({
       autoLoadEntities: true,
       type: 'postgres',
-      url: 'postgres://task_k5oo_user:EvVr5xzacjsodlp7uuQqcqYsNxMBjc4k@dpg-cevd3t02i3mntl1cds5g-a.oregon-postgres.render.com/task_k5oo',
+      url: 'postgres://task_l2gc_user:FTA9Ng42qTLHotJjMqMuVNrOsA5EPYHl@dpg-cevd86qrrk0a2jpgidb0-a.singapore-postgres.render.com/task_l2gc',
       ssl: true,
       synchronize: true,
-
       extra: {
         ssl: {
           rejectUnauthorized: false,
