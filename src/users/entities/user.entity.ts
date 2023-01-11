@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Book } from 'src/book/entities/book.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -26,4 +27,7 @@ export class User {
     nullable: true,
   })
   refreshToken?: string;
+
+  @OneToMany((type) => Book, (Book) => Book.seller)
+  books: Book[];
 }
