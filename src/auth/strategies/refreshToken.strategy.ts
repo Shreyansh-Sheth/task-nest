@@ -2,6 +2,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Request } from 'express';
 import { Injectable } from '@nestjs/common';
+import { JWT_SECRET } from '../secret';
 
 @Injectable()
 export class RefreshTokenStrategy extends PassportStrategy(
@@ -11,7 +12,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'SECRET_KEY', //MOVE TO ENV
+      secretOrKey: JWT_SECRET.REFRESH_SECRET, //MOVE TO ENV
       passReqToCallback: true,
     });
   }

@@ -1,15 +1,33 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
+import { Req } from '@nestjs/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
+import { AccessTokenGuard } from 'src/common/accessToken.guard';
+import { HasRoles } from 'src/common/roles.decorator';
+import { RolesGuard } from 'src/common/roles.guard';
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 
+@ApiTags('Books')
 @Controller('book')
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
   @Post()
-  create(@Body() createBookDto: CreateBookDto) {
-    return this.bookService.create(createBookDto);
+  @HasRoles('SELLER')
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  async create(@Body() createBookDto: CreateBookDto, @Req() req: Request) {
+    return await this.bookService.create(createBookDto, req.user['id']);
   }
 
   @Get()

@@ -36,6 +36,7 @@ export class AuthController {
   }
 
   @UseGuards(RefreshTokenGuard)
+  @ApiBearerAuth()
   @ApiUnauthorizedResponse()
   @Get('refresh')
   refreshTokens(@Req() req: Request) {

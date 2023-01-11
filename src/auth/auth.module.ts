@@ -6,12 +6,17 @@ import { AccessTokenStrategy } from './strategies/accessToken.strategy';
 import { RefreshTokenStrategy } from './strategies/refreshToken.strategy';
 import { UsersModule } from 'src/users/users.module';
 import { ConfigService } from '@nestjs/config';
+import { JWT_SECRET } from './secret';
 
 @Module({
   imports: [
-    JwtModule.register({
-      secret: 'SECRET_KEY',
-    }),
+    // JwtModule.register({
+    //   secret: JWT_SECRET.ACCESS_SECRET,
+    // }),
+    // JwtModule.register({
+    //   secret: JWT_SECRET.REFRESH_SECRET,
+    // }),
+    JwtModule,
     UsersModule,
   ],
   controllers: [AuthController],

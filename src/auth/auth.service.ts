@@ -9,6 +9,7 @@ import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { AuthDto } from './dto/auth.dto';
+import { JWT_SECRET } from './secret';
 
 @Injectable()
 export class AuthService {
@@ -85,7 +86,7 @@ export class AuthService {
           role: role,
         },
         {
-          secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
+          secret: JWT_SECRET.ACCESS_SECRET,
           expiresIn: '15m',
         },
       ),
@@ -95,7 +96,7 @@ export class AuthService {
           role: role,
         },
         {
-          secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+          secret: JWT_SECRET.REFRESH_SECRET,
           expiresIn: '7d',
         },
       ),
