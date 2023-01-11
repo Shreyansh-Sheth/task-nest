@@ -17,9 +17,13 @@ export class User {
   @Column()
   role: 'USER' | 'SELLER';
 
-  @Column()
+  @Column({
+    default: 100,
+  })
   points: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   refreshToken?: string;
 }

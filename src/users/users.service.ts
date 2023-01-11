@@ -19,6 +19,13 @@ export class UsersService {
     return await this.usersRepository.findOneBy({ email });
   }
 
+  async findById(id: number) {
+    return await this.usersRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
   async updateRefreshToken(id: number, token: string) {
     return await this.usersRepository.update(
       {

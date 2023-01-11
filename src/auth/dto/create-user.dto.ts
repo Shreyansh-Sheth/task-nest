@@ -14,4 +14,6 @@ export class CreateUserDto {
 
   @IsEnum(['USER', 'SELLER'])
   role: 'USER' | 'SELLER';
+
+  points: number;
 }
