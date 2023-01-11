@@ -15,10 +15,14 @@ import { AuthDto } from './dto/auth.dto';
 import { RefreshTokenGuard } from 'src/common/refreshToken.guard';
 import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AccessTokenGuard } from 'src/common/accessToken.guard';
+import { UsersService } from 'src/users/users.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UsersService,
+  ) {}
 
   @Post('signup')
   signup(@Body() createUserDto: CreateUserDto) {
@@ -49,7 +53,7 @@ export class AuthController {
   @ApiUnauthorizedResponse()
   @Get('user')
   @ApiBearerAuth()
-  user(@Req() req: Request) {
-    return req.user;
+  async user(@Req() req: Request) {
+    return await this.userService.findById(req.user['sub']);
   }
 }

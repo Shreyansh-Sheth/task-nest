@@ -1,5 +1,6 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Book } from 'src/book/entities/book.entity';
+import { Order } from 'src/order/entities/order.entity';
 import {
   Entity,
   Column,
@@ -37,4 +38,7 @@ export class User {
 
   @OneToMany((type) => Book, (Book) => Book.seller)
   books: Book[];
+
+  @OneToMany((type) => Order, (Order) => Order.user)
+  purchases: Order[];
 }

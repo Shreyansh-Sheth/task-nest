@@ -5,13 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { BookModule } from './book/book.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       autoLoadEntities: true,
       type: 'postgres',
-      url: 'postgres://the_start_user:V1pWbI4GCcaM4RHij186D21rq2TBxbDN@dpg-ceaat9un6mphc8su22j0-a.singapore-postgres.render.com/the_start',
+      url: 'postgres://task_k5oo_user:EvVr5xzacjsodlp7uuQqcqYsNxMBjc4k@dpg-cevd3t02i3mntl1cds5g-a.oregon-postgres.render.com/task_k5oo',
       ssl: true,
       synchronize: true,
 
@@ -24,6 +25,7 @@ import { BookModule } from './book/book.module';
     UsersModule,
     AuthModule,
     BookModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

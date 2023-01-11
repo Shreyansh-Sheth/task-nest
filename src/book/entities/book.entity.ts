@@ -1,4 +1,5 @@
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { Order } from 'src/order/entities/order.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
@@ -31,7 +32,7 @@ export class Book {
   @ApiHideProperty()
   seller: User;
 
-  @ManyToMany((type) => User)
-  @JoinTable()
-  buyers: User[];
+  @OneToMany((type) => Order, (Order) => Order.book)
+  @ApiHideProperty()
+  orders: Order[];
 }

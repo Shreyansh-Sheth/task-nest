@@ -24,7 +24,6 @@ import { AccessTokenGuard } from 'src/common/accessToken.guard';
 import { HasRoles } from 'src/common/roles.decorator';
 import { RolesGuard } from 'src/common/roles.guard';
 import { BookService } from './book.service';
-import { BuyBookDto } from './dto/buy-book.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './entities/book.entity';
@@ -56,25 +55,25 @@ export class BookController {
     return this.bookService.findAll(limit, skip);
   }
 
-  @Post('buy-book')
-  @ApiBearerAuth()
-  @ApiForbiddenResponse()
-  @ApiInternalServerErrorResponse()
-  @HasRoles('USER')
-  @UseGuards(AccessTokenGuard, RolesGuard)
-  buyBook(@Body() buyBookDto: BuyBookDto, @Req() req: Request) {
-    const res = this.bookService.buyBook(buyBookDto.bookId, req.user['sub']);
-    if (!res) {
-      throw new InternalServerErrorException();
-    }
-  }
+  // @Post('buy-book')
+  // @ApiBearerAuth()
+  // @ApiForbiddenResponse()
+  // @ApiInternalServerErrorResponse()
+  // @HasRoles('USER')
+  // @UseGuards(AccessTokenGuard, RolesGuard)
+  // buyBook(@Body() buyBookDto: BuyBookDto, @Req() req: Request) {
+  //   const res = this.bookService.buyBook(buyBookDto.bookId, req.user['sub']);
+  //   if (!res) {
+  //     throw new InternalServerErrorException();
+  //   }
+  // }
 
-  @Get('my-books')
-  @ApiBearerAuth()
-  @ApiForbiddenResponse()
-  @HasRoles('USER')
-  @UseGuards(AccessTokenGuard, RolesGuard)
-  getMyBooks(@Req() req: Request) {
-    return this.bookService.getMyBooks(req.user['sub']);
-  }
+  // @Get('my-books')
+  // @ApiBearerAuth()
+  // @ApiForbiddenResponse()
+  // @HasRoles('USER')
+  // @UseGuards(AccessTokenGuard, RolesGuard)
+  // getMyBooks(@Req() req: Request) {
+  //   return this.bookService.getMyBooks(req.user['sub']);
+  // }
 }
