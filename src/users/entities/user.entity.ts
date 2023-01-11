@@ -1,5 +1,12 @@
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Book } from 'src/book/entities/book.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToMany,
+} from 'typeorm';
 
 @Entity()
 export class User {
